@@ -1,0 +1,112 @@
+
+-- Crear BD Tienda_Tecnologica
+CREATE DATABASE Tienda_Tecnologica;
+
+-- Seleciona BD
+USE Tienda_Tecnologica;
+
+
+
+-- ### TABLA: FABRICANTE ###
+-- Almacena datos de los fabricantes
+
+
+CREATE TABLE fabricante (
+    -- Codigo unico de fabricante
+    codigo INT PRIMARY KEY,
+
+    -- Nombre del fabricante
+    nombre VARCHAR(100) NOT NULL
+);
+
+-- ### TABLA: PRODUCTO ###
+-- Almacena los productos de la tienda
+
+CREATE TABLE producto (
+
+    -- Codigo unico producto
+    codigo INT PRIMARY KEY,
+
+    -- Nombre del producto
+    nombre VARCHAR(100) NOT NULL,
+
+    -- Precio del producto con dos decimales
+    precio DECIMAL(10,2) NOT NULL,
+
+    -- Codigo del fabricante al que pertenece el producto
+    codigo_fabricante INT NOT NULL,
+
+    -- Definir codigo_fabricante como foranea
+    -- para relacionarlo con la tabla fabricante
+    FOREIGN KEY (codigo_fabricante)
+        REFERENCES fabricante(codigo)
+);
+
+
+-- ### INSERTAR FABRICANTES ###
+
+INSERT INTO fabricante (codigo, nombre)
+VALUES
+(1, 'Lenovo'),
+(2, 'HP'),
+(3, 'Dell'),
+(4, 'ASUS');
+
+-- ### INSERTAR PRODUCTOS ###
+INSERT INTO producto
+(codigo, nombre, precio, codigo_fabricante)
+VALUES
+(101, 'ThinkPad E14', 2500000, 1),
+(102, 'IdeaPad 3', 1800000, 1),
+(103, 'Pavilion 15', 2200000, 2),
+(104, 'Inspiron 15', 2400000, 3),
+(105, 'VivoBook 15', 1900000, 4);
+
+
+Preguntas
+INSERT INTO fabricante (codigo, nombre)
+VALUES (5, 'Acer');
+
+INSERT INTO producto
+(codigo, nombre, precio, codigo_fabricante)
+VALUES
+(106, 'Aspire 5', 2100000, 5);
+
+SELECT * FROM fabricante;
+
+UPDATE producto
+SET precio = 2000000
+WHERE codigo = 106;
+
+DELETE FROM producto
+WHERE codigo = 106;
+
+
+
+ACTIVIDAD — TIENDA TECNOLÓGICA
+│
+├── 1. Requerimientos
+│
+├── 2. Normalización
+│     ├── 1FN
+│     ├── 2FN
+│     └── 3FN
+│
+├── 3. MER
+│     ├── FABRICANTE
+│     │     ├── PK codigo
+│     │     └── nombre
+│     │
+│     └── PRODUCTO
+│           ├── PK codigo
+│           ├── nombre
+│           ├── precio
+│           └── FK codigo_fabricante
+│
+├── 4. INSERT
+│
+├── 5. SELECT
+│
+├── 6. UPDATE
+│
+└── 7. DELETE
